@@ -1,0 +1,1 @@
+print('hello world')# -*-coding:UTF-8 -*-

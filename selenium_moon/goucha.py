@@ -1,6 +1,7 @@
 # -*-coding:UTF-8 -*-
 from pymysql import connect
 from selenium import webdriver
+from time import sleep
 
 driver=webdriver.Chrome(r'../drivers/chromedriver.exe')
 driver.get('http://192.168.1.4/ecshop/admin/privilege.php?act=login')
@@ -13,9 +14,11 @@ driver.switch_to.frame('menu-frame')
 driver.find_element_by_link_text('商品列表').click()
 driver.switch_to.default_content()
 driver.switch_to.frame('main-frame')
+sleep(1)
 goods_name=driver.find_element_by_xpath('//*[@id="listDiv"]/table[1]/tbody/tr[3]/td[2]/span').text
-img_type= driver.find_element_by_xpath('//*[@id="listDiv"]/table[1]/tbody/tr[3]/td[5]/img').get_attribute('src')
-# print(img_type)
+sleep(1)
+img_type= driver.find_element_by_xpath('//*[@id="listDiv"]/table[1]/tbody/tr[3]/td[5]/img').get_attribute('src').split('/')#切成元组
+print(img_type)
 if img_type[-1]=='no.gif':
     is_on_sale=1
 else:
